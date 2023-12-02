@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+
+<header
+    class="masthead"
+    style="background-color: #7071E8"
+>
+    <div class="container position-relative px-4 px-lg-8">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h3>Image Color Palette</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% for message in get_flashed_messages() %}
+<h3>{{ message }}</h3>
+{% endfor %}
+
+{% block content_top %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-6 col-lg-5 col-xl-6">
+            <form class="input-group mb-3 py-5 py-lg-5" action="/" method="post" enctype="multipart/form-data">
+                    <input type="file" class="form-control" name="file">
+                    <input class="btn btn-outline-secondary" type="submit" value="Upload">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% include 'footer.html' %}
