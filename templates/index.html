@@ -14,15 +14,30 @@
         </div>
     </div>
 </header>
-{% for message in get_flashed_messages() %}
-<h3>{{ message }}</h3>
-{% endfor %}
+
+<div class="container-fluid px-4 px-lg-6" style="background-color: #F5E8C7">
+    {% for message in get_flashed_messages() %}
+    <div class="row gx-4 gx-lg-6 justify-content-center">
+        <div class="col-md-6 col-lg-5 col-xl-1">
+            <h3>{{ message }}</h3>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 
 {% block content_top %}
 <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-6 justify-content-center">
+        <div class="col-md-6 col-lg-6 col-xl-4">
+            <div class="py-3 py-lg-3" style="font-size: 3rem; ">
+                <h2>Please upload a image file</h2>
+            </div>
+        </div>
+    </div>
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-6 col-lg-5 col-xl-6">
-            <form class="input-group mb-3 py-5 py-lg-5" action="/" method="post" enctype="multipart/form-data">
+            <form class="input-group mb-3 py-3 py-lg-4" action="/" method="post" enctype="multipart/form-data">
                     <input type="file" class="form-control" name="file">
                     <input class="btn btn-outline-secondary" type="submit" value="Upload">
             </form>
@@ -31,5 +46,40 @@
 </div>
 {% endblock %}
 
+{% if image_loaded %}
+<div class="container text-center position-relative px-4 px-lg-6">
+    <div class="row gx-5 gx-lg-5 justify-content-center">
+        <div class="col-md-5 col-lg-6 col-xl-8">
+            <div class="py-3 py-lg-3" style="font-size: 3rem;">
+                <h3>Image</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-5 col-lg-6 col-xl-7">
+            <img src="{{url_for('upload_file')}}" alt="" width="500">
+        </div>
+    </div>
+    <div class="row gx-5 gx-lg-5 justify-content-center">
+        <div class="col-md-5 col-lg-6 col-xl-8">
+            <div class="py-3 py-lg-3" style="font-size: 3rem;">
+                <h3>Color Palette</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row gx-3 gx-lg-2 justify-content-center">
+        {% for i in colors%}
+        <div class="col-md-4 col-lg-2 col-xl-2">
+            <div class="py-1 py-lg-2">
+                <span class="dot" style="background-color: {{i}};"></span>
+            </div>
+            <div class="py-1 py-lg-2">
+                <span>{{i}}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
 
 {% include 'footer.html' %}
